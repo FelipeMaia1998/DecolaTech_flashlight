@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {View, StyleSheet, Image, TouchableOpacity, SafeAreaView, StatusBar} from 'react-native';
 import Torch from 'react-native-torch';
 import RNShake from 'react-native-shake';
@@ -6,7 +6,8 @@ import RNShake from 'react-native-shake';
 const App = () => {
 
   const [toggle, setToggle] = useState(false);
-  const handleChangeToggle = () => setToggle(oldToggle => !oldToggle);
+  //implementação com useCallback <!-- está certo? -->
+  const  handleChangeToggle = useCallback(() => {setToggle(oldToggle => !oldToggle)}, [setToggle]);
 
   useEffect(() => {
     //ligar e desligar flash
